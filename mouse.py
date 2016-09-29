@@ -14,32 +14,29 @@ class Mouse:
     def getLocation(self):
         return self.data[self.moveIndex]["location"]
 
-    def advance(self, time):
+    def advance(self):
         if ((self.moveIndex + 1) >= len(self.data)):
             self.done = True
-        else:
-            remainder = (self.timeCounter + time) - int(self.data[self.moveIndex]["duration"])
             self.path.append(self.getLocation())
-            self.timeCounter = remainder
+            self.timeCounter = 0
+        else:
+            remainder = self.timeCounter - int(self.data[self.moveIndex]["duration"])
+            self.path.append(self.getLocation())
             self.moveIndex += 1
+            self.timeCounter = remainder
             print("Mouse " + self.idNum + " moved to location " + self.getLocation())
-            if(remainder > int(self.data[self.moveIndex]["duration"])):
-                self.timeCounter = 0
-                self.advance(remainder)
-            else:
-                self.timeCounter = remainder
 
     def update(self, time):
         if (self.done):
             print("Mouse " + self.idNum + " is done moving.")
             print("Mouse " + self.idNum + " is in location " + self.getLocation())
         else:
-            if (self.timeCounter + time > int(self.data[self.moveIndex]["duration"])):
-                self.advance(time)
-            else:
-                self.timeCounter += time
+            self.timeCounter += time
+            if (self.timeCounter < int(self.data[self.moveIndex]["duration"])):
                 print("Mouse " + self.idNum + " did not move.")
                 print("Mouse " + self.idNum + " is in location " + self.getLocation())
+            while (self.timeCounter >= int(self.data[self.moveIndex]["duration"])):
+                self.advance()
 
     def getPath(self):
         return self.path

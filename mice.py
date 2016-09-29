@@ -15,7 +15,15 @@ while not done:
         done = True
     else:
         simulation.updateAll(int(inputStr))
-print(simulation.getAllPaths())
+
+data = simulation.getAllPaths()
+
+#for key in data.keys():
+#    print("****************")
+#    print("Mouse ID: " + key)
+#    for location in data[key]:
+#        print(location) 
+
 
 #print parser.getData()
 
