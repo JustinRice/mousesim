@@ -10,13 +10,19 @@ simulation = Simulation()
 simulation.setUp(parser.getData())
 done = False
 while not done:
+    print("(25) to see all paths thus far. (35) to see all heat data. (99) to quit.")
+    print("Total time so far: " + str(simulation.getTotalTime()))
     inputStr = input("How long to move? ")
     if (int(inputStr) == 99):
         done = True
+    elif (int(inputStr) == 25):
+        print(simulation.getAllPaths())
+    elif (int(inputStr) == 35):
+        print(simulation.getAllHeatData())
     else:
         simulation.updateAll(int(inputStr))
 
-data = simulation.getAllPaths()
+#data = simulation.getAllPaths()
 
 #for key in data.keys():
 #    print("****************")
