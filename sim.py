@@ -36,5 +36,9 @@ class Simulation:
         if (not self.isDone()):
             self.totalTime += time
 
+    def oneStep(self, time):
+        while not self.isDone():
+            self.updateAll(time)
+
     def getTotalTime(self):
         return self.totalTime

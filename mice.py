@@ -11,8 +11,12 @@ simulation.setUp(parser.getData())
 done = False
 while not done:
     print("(25) to see all paths thus far. (35) to see all heat data. (99) to quit.")
+    print("-xx to completely run sim, in increments of xx.")
     print("Total time so far: " + str(simulation.getTotalTime()))
-    inputStr = input("How long to move? ")
+    inputStr = str(input("How long to move? "))
+    if(inputStr[0] == '-'):
+        simulation.oneStep(int(inputStr[1:]))
+
     if (int(inputStr) == 99):
         done = True
     elif (int(inputStr) == 25):

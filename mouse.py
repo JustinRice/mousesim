@@ -48,8 +48,8 @@ class Mouse:
                     self.timeCounter += self.leftToMove
                     self.updateHeatData(self.getLocation(), self.leftToMove)
                     self.leftToMove = 0
-                    print("Mouse " + self.idNum + " did not move.")
-                    print("Mouse " + self.idNum + " is in location " + self.getLocation())
+#print("Mouse " + self.idNum + " did not move.")
+#                    print("Mouse " + self.idNum + " is in location " + self.getLocation())
                 else:
                     movedThisRound = int(self.data[self.moveIndex]["duration"]) - self.timeCounter
                     self.leftToMove -= movedThisRound
